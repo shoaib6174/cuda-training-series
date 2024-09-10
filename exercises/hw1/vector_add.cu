@@ -21,7 +21,7 @@ const int block_size = 256;  // CUDA maximum is 1024
 __global__ void vadd(const float *A, const float *B, float *C, int ds)
 {
 
-  int idx = threadIdx.x + blockIdx.x * block_size; // create typical 1D thread index from built-in variables
+  int idx = threadIdx.x + blockIdx.x * blockDim.x; // create typical 1D thread index from built-in variables
   if (idx < ds)
   {
     C[idx] = A[idx] + B[idx];
